@@ -1,0 +1,39 @@
+{
+  "name": "flisol-lima-2018",
+  "version": "1.0.0",
+  "description": "Web Site For Flisol 2018 at Lima",
+  "main": "index.js",
+  "repository": "git@gitlab.com:softbutterfly/flisol-lima-2018.git",
+  "author": "zodiacfireworks <martin.vuelta@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "parcel index.html",
+    "build:prod": "parcel build index.html --out-dir dist",
+    "build:gitlab": "parcel build index.html --public-url '/flisol-lima-2018/' --out-dir public"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-plugin-vue": "^4.4.0",
+    "less": "^3.0.1",
+    "node-sass": "^4.8.3",
+    "parcel-bundler": "^1.7.0",
+    "parcel-plugin-eslint": "^1.0.4",
+    "parcel-plugin-vue": "^1.5.0",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.0",
+    "scroll-into-view": "^1.9.3",
+    "vue": "^2.5.16",
+    "vue-agile": "^0.3.7",
+    "vue-awesome": "^3.0.0",
+    "vue-carousel": "^0.6.14",
+    "vue-router": "^3.0.1",
+    "vue2-google-maps": "^0.8.12",
+    "vuetify": "^1.0.14",
+    "vuex": "^3.0.1"
+  }
+}
