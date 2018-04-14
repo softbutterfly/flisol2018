@@ -9,7 +9,8 @@
   "scripts": {
     "start:dev": "parcel index.html",
     "build:prod": "parcel build index.html --out-dir dist",
-    "build:gitlab": "parcel build index.html --public-url '/flisol-lima-2018/' --out-dir public"
+    "build:gitlab":
+      "parcel build index.html --public-url '/flisol-lima-2018/' --out-dir public"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -26,7 +27,6 @@
   },
   "dependencies": {
     "normalize.css": "^8.0.0",
-    "scroll-into-view": "^1.9.3",
     "vue": "^2.5.16",
     "vue-agile": "^0.3.7",
     "vue-awesome": "^3.0.0",
