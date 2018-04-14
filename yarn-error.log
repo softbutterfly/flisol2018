@@ -1,0 +1,74 @@
+Arguments: 
+  /opt/conda/envs/javascript/bin/node /opt/conda/envs/javascript/bin/yarn init
+
+PATH: 
+  /opt/conda/envs/javascript/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/sbin:/usr/sbin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/opt/android-sdk/tools/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.9.0
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "flisol-lima-2018",
+    "version": "1.0.0",
+    "description": "Web Site For Flisol 2018 at Lima",
+    "main": "index.js",
+    "repository": "git@gitlab.com:softbutterfly/flisol-lima-2018.git",
+    "author": "zodiacfireworks <martin.vuelta@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+      "start:dev": "parcel index.html",
+      "build:prod": "parcel build index.html --out-dir dist",
+      "build:gitlab":
+        "parcel build index.html --public-url '/flisol-lima-2018/' --out-dir public"
+    },
+    "devDependencies": {
+      "babel-plugin-transform-object-rest-spread": "^6.26.0",
+      "babel-preset-env": "^1.6.1",
+      "css-loader": "^0.28.11",
+      "eslint": "^4.19.1",
+      "eslint-plugin-vue": "^4.4.0",
+      "node-sass": "^4.8.3",
+      "parcel-bundler": "^1.7.0",
+      "parcel-plugin-eslint": "^1.0.3",
+      "parcel-plugin-vue": "^1.5.0",
+      "vue-template-compiler": "^2.5.16"
+    },
+    "dependencies": {
+      "less": "^3.0.1",
+      "normalize.css": "^8.0.0",
+      "vue": "^2.5.16",
+      "vue-agile": "^0.3.7",
+      "vue-awesome": "^2.3.5",
+      "vue-carousel": "^0.6.9",
+      "vue-material": "^1.0.0-beta-7",
+      "vue-router": "^3.0.1",
+      "vue2-google-maps": "^0.8.11",
+      "vuex": "^3.0.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/opt/conda/envs/javascript/lib/node_modules/yarn/lib/cli.js:128791:13)
+      at Interface.emit (events.js:180:13)
+      at Interface._ttyWrite (readline.js:783:16)
+      at ReadStream.onkeypress (readline.js:163:10)
+      at ReadStream.emit (events.js:180:13)
+      at emitKeys (internal/readline.js:420:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1019:36)
+      at ReadStream.emit (events.js:180:13)
+      at addChunk (_stream_readable.js:269:12)
