@@ -3,14 +3,18 @@ import "vuetify/dist/vuetify.min.css"
 
 import Vue from "vue"
 import Vuetify from "vuetify"
-import ScrollIntoView from "scroll-into-view"
+import * as VueGoogleMaps from "vue2-google-maps"
 
 import App from "./App.vue"
 
 Vue.use(Vuetify)
-Vue.component("app", App)
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyBS4g7qNqSVoVAEAkKiL_eosjSxMeaowBE"
+  }
+})
 
-window.scrollIntoView = ScrollIntoView
+Vue.component("app", App)
 
 new Vue({
   el: "#app",
