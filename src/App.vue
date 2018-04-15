@@ -13,11 +13,9 @@
     </header>
     <v-content id="main" class="main">
       <v-container>
-        <v-card id="toolbar-container" :style="{
-          height: toolbarHeight + 'px'
-        }">
+        <v-card id="toolbar-container" :style="{height: toolbarHeight + 'px'}">
           <v-toolbar id="toolbar" color="white">
-            <v-menu close-on-content-click offset-x open-on-hover class="hidden-md-and-up">
+            <v-menu close-on-content-click offset-x class="hidden-md-and-up">
               <v-toolbar-title slot="activator">
                 <v-toolbar-side-icon></v-toolbar-side-icon>
               </v-toolbar-title>
@@ -43,7 +41,7 @@
         <v-card id="home" class="section">
           <v-container fill-height fluid>
             <v-layout class="gutter" fill-height row wrap >
-              <v-flex class="title" xs12 sm4 flexbox text-xs-left text-sm-right>
+              <v-flex class="title" xs12 sm4 text-xs-left text-sm-right>
                 <h1>
                   ¿Qué es el <strong>FLISoL</strong>?
                 </h1>
@@ -61,30 +59,341 @@
                   evento.
                 </p>
               </v-flex>
-              <v-flex xs12 sm8 offset-sm4 style="margin-top:24px;" text-xs-center text-sm-left>
+              <v-flex xs12 sm8 offset-sm4 text-xs-center text-sm-left>
                 <img class="logo" :src="assets.logoFlisol" alt="FLISOL">
-                <img class="logo" :src="assets.logoUpn" alt="UPN">
               </v-flex>
             </v-layout>
           </v-container>
         </v-card>
-        <v-card id="schedule" class="section">
-          <v-container>
-            Schedule
+
+        <v-card id="schedule" class="section" dark color="deep-purple darken-4">
+          <v-container fill-height fluid>
+            <v-layout fill-height row wrap>
+              <v-flex class="title gutter" xs12>
+                <h1>Nuestra <strong>Agenda</strong></h1>
+              </v-flex>
+              <v-flex class="description" xs12>
+                <p>
+                  Tres ambientes en simultáneo con las mejores ponencias acerca del software libre.
+                </p>
+              </v-flex>
+            </v-layout>
           </v-container>
+          <v-tabs v-model="active" color="deep-purple darken-4" dark slider-color="white" grow show-arrows height="56">
+            <v-tab ripple>
+              Sala de conferencias 03
+            </v-tab>
+            <v-tab ripple>
+              Laboratorio 12
+            </v-tab>
+            <v-tab ripple>
+              Salon A-203
+            </v-tab>
+            <v-tab-item class="white grey--text text--darken-4">
+              <v-list three-line light>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="orange lighten-2">
+                    <v-icon dark>event</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
+                    <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="red darken-2">
+                    <v-icon dark>edit</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Inscripciones</v-list-tile-title>
+                    <v-list-tile-sub-title>09:00 a 09:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar>
+                    <img :src="assets.ronaldMelgarejo" alt="Ronald Melgarejo">
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Transformación digital</v-list-tile-title>
+                    <v-list-tile-sub-title>Ronald Melgarejo</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>9:30 - 10:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar>
+                    <img :src="assets.nuritziSanchez" alt="Nuritzi Sanchez">
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Conociendo a GNOME</v-list-tile-title>
+                    <v-list-tile-sub-title>Nurtizi Sanchez</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>10:30 -11:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Arduino MKR, familia tecnologica basada en Open Hardware</v-list-tile-title>
+                    <v-list-tile-sub-title>Jorge Guerra</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>11:30 - 12:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar>
+                    <img :src="assets.sheylaBrena" alt="Sheyla Breña">
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Ropas y electrónica con Arduino Lilipad</v-list-tile-title>
+                    <v-list-tile-sub-title>Sheyla Breña</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>12:30 - 13:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="green darken-2">
+                    <v-icon dark>local_dining</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Regrigerio</v-list-tile-title>
+                    <v-list-tile-sub-title>13:00 - 13:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Domotica</v-list-tile-title>
+                    <v-list-tile-sub-title>Oscar Castillo</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>13:30 - 14:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>GNOME</v-list-tile-title>
+                    <v-list-tile-sub-title>Fefa Morales</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>14:30 - 15:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>IOTA y arduino: alternativa Open al Blockchain</v-list-tile-title>
+                    <v-list-tile-sub-title>Christopher Aldave</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>15:00 - 16:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Blender en la medicina</v-list-tile-title>
+                    <v-list-tile-sub-title>Eduardo Diaz</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>16:00 - 17:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Blender en el diseño</v-list-tile-title>
+                    <v-list-tile-sub-title>Sandro</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>17:00 - 18:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-tab-item>
+
+
+            <v-tab-item class="white grey--text text--darken-4">
+              <v-list three-line light>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="orange lighten-2">
+                    <v-icon dark>event</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
+                    <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="red darken-2">
+                    <v-icon dark>edit</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Inscripciones</v-list-tile-title>
+                    <v-list-tile-sub-title>09:00 a 09:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Integrando Kotlin a proyectos android</v-list-tile-title>
+                    <v-list-tile-sub-title>Eduardo Medina</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>11:00 - 12:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Desarrollando aplicaciones con Google Cloud</v-list-tile-title>
+                    <v-list-tile-sub-title>Milton Yarleque</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>12:00 -13:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="green darken-2">
+                    <v-icon dark>local_dining</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Regrigerio</v-list-tile-title>
+                    <v-list-tile-sub-title>13:00 - 13:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Realidad Virtual en la Web</v-list-tile-title>
+                    <v-list-tile-sub-title>Angel Quiroz</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>14:00 - 16:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Single Page Applications con Vue.js y Vuetify: La Web de Flisol Lima UPN</v-list-tile-title>
+                    <v-list-tile-sub-title>Martin Vuelta</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>16:00 - 17:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-tab-item>
+
+            <v-tab-item class="white grey--text text--darken-4">
+              <v-list three-line light>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="orange lighten-2">
+                    <v-icon dark>event</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
+                    <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="red darken-2">
+                    <v-icon dark>edit</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Inscripciones</v-list-tile-title>
+                    <v-list-tile-sub-title>09:00 a 09:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>APESOL</v-list-tile-title>
+                    <v-list-tile-sub-title>Pedro Muñoz</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>14:30 - 15:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Fedora</v-list-tile-title>
+                    <v-list-tile-sub-title>Carlos Jara</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>15:30 - 16:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-divider light></v-divider>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar color="grey darken-1">
+                    <v-icon dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title>HERE Technologies - Developer Platform</v-list-tile-title>
+                    <v-list-tile-sub-title>Anthony Machuca</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>16:30 - 17:30</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-tab-item>
+          </v-tabs>
         </v-card>
-        <v-card id="speakers" class="section">
+
+        <!-- v-card id="speakers" class="section">
           <v-container>
             Speakers
           </v-container>
-        </v-card>
+        </v-card -->
+
         <v-card id="faq" class="section">
           <v-container fill-height fluid>
             <v-layout fill-height row wrap>
-              <v-flex class="title gutter" xs12 flexbox>
+              <v-flex class="title gutter" xs12>
                 <h1>Preguntas <strong>Frecuentes</strong></h1>
               </v-flex>
-              <v-flex class="description" xs12 flexbox>
+              <v-flex class="description" xs12>
                 <p>
                   Resuelve tus dudas sobre el evento
                 </p>
@@ -167,12 +476,13 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-card>
+
         <v-card id="location" class="section">
           <v-container fill-height fluid>
             <v-layout class="gutter" fill-height row wrap >
-              <v-flex xs12 sm6 flexbox>
+              <v-flex class="no-margin" xs12 sm6>
                 <v-layout class="gutter" fill-height row wrap >
-                  <v-flex class="title" xs12 flexbox>
+                  <v-flex class="title no-margin" xs12>
                     <h1>
                       Ven  al <strong>FLISoL</strong>
                     </h1>
@@ -183,11 +493,11 @@
                     </p>
                   </v-flex>
                   <v-flex xs12>
-                    <v-list two-line subheader>
+                    <v-list three-line subheader>
                       <v-divider></v-divider>
                       <v-list-tile avatar>
                         <v-list-tile-avatar>
-                          <v-icon color="red lighten-1">place</v-icon>
+                          <v-icon color="red darken-2">place</v-icon>
                         </v-list-tile-avatar>
                         <v-list-tile-content>
                           <v-list-tile-title>Universidad Privada del Norte</v-list-tile-title>
@@ -198,7 +508,7 @@
                       <v-divider></v-divider>
                       <v-list-tile avatar>
                         <v-list-tile-avatar>
-                          <v-icon color="orange lighten-1">event</v-icon>
+                          <v-icon color="orange lighten-2">event</v-icon>
                         </v-list-tile-avatar>
                         <v-list-tile-content>
                           <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
@@ -208,7 +518,7 @@
                       <v-divider></v-divider>
                       <v-list-tile avatar>
                         <v-list-tile-avatar>
-                          <v-icon color="cyan lighten-1">email</v-icon>
+                          <v-icon color="cyan lighten-2">email</v-icon>
                         </v-list-tile-avatar>
                         <v-list-tile-content>
                           <v-list-tile-title>Leyla Marcelo</v-list-tile-title>
@@ -242,11 +552,39 @@
               </v-flex>
             </v-layout>
           </v-container>
+        </v-card>
 
-
-
-
-
+        <v-card id="footer" class="section">
+          <v-container>
+            <v-layout fill-height class="gutter" row wrap >
+              <v-flex xs12 class="title" text-xs-center>
+                <h1>
+                  Vive el <strong>FLISoL</strong>
+                </h1>
+              </v-flex>
+              <v-flex xs12 class="description" text-xs-center>
+                <p>
+                  Con el auspicio de
+                </p>
+              </v-flex>
+              <v-flex xs12 class="logo-holder" text-xs-center>
+                <img class="logo" :src="assets.logoUpn" alt="FLISOL">
+              </v-flex>
+              <v-flex xs12 class="logo-holder white sponsors" text-xs-center>
+                <img v-for="(sponsor, name) in content.sections.footer.sponsors" :key="name" class="logo" :src="sponsor.logo" alt="sponsor.name">
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <v-container class="grey darken-4 white--text">
+            <v-layout fill-height class="gutter" row wrap >
+              <v-flex xs12 md6 text-xs-center text-md-left class="no-margin">
+                © 2018 FLISoL
+              </v-flex>
+              <v-flex xs12 md6 text-xs-center text-md-right>
+                Con <v-icon color="red darken-1" size=5>fas fa-heart</v-icon> por <a href="https://softbutterfly.io" targer="_blank" class="softbutterfly">Soft<strong>Butterfly</strong></a>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-card>
       </v-container>
     </v-content>
@@ -276,12 +614,32 @@ strong {
   font-weight: 700;
 }
 
+.page {
+  postion: relative;
+}
+
 .application {
   font-family: 'Raleway', 'Roboto', sans-serif;
 }
 
-.page {
-  postion: relative;
+.gutter {
+  box-sizing: border-box;
+  margin-left: -16px;
+  margin-right: -16px;
+
+  & > * {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .no-margin {
+    margin: 0;
+  }
 }
 
 .parallax {
@@ -292,6 +650,10 @@ strong {
     height: 100vh!important;
     min-height: 500px;
   }
+}
+
+.list__tile__content {
+  width: 0;
 }
 
 .header {
@@ -328,17 +690,6 @@ strong {
   }
 }
 
-.gutter {
-  box-sizing: border-box;
-  margin-left: -16px;
-  margin-right: -16px;
-}
-
-.gutter > * {
-   padding-left: 16px;
-   padding-right: 16px;
-}
-
 .main {
   z-index: 1;
   margin-top: -40vh;
@@ -347,11 +698,15 @@ strong {
     margin-top: 32px;
   }
 
-  .container {
-    max-width: 750px;
+  & > .content--wrap {
+    & > .container {
+      padding-bottom: 0;
 
-    @media (min-width: 960px) {
-      max-width: 850px;
+      max-width: 750px;
+
+      @media (min-width: 960px) {
+        max-width: 850px;
+      }
     }
   }
 }
@@ -359,10 +714,10 @@ strong {
 .card.section {
   .title {
     h1 {
-      margin-top: 0;
       font-weight: 300;
       font-size: 1.75em;
       line-height: 1.5;
+      margin: 0;
     }
   }
 
@@ -372,16 +727,30 @@ strong {
       line-height: 1.5;
       font-weight: 300;
 
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
+  .logo {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .logo-holder {
+    .logo {
+      height: 100px;
+      max-width: initial;
+      width: auto;
+      padding: 12px;
     }
   }
 }
 
 #home {
-  .logo {
-    height: 100px;
-    width: auto;
-  }
+
 }
 
 #faq {
@@ -423,6 +792,18 @@ strong {
     min-height: 300px;
   }
 }
+
+.softbutterfly {
+  color: #ffffff;
+  text-decoration: none;
+
+  &:hover {
+    color: #2675ca;
+    strong {
+      color: #e53935;
+    }
+  }
+}
 </style>
 
 <script>
@@ -430,6 +811,21 @@ import bannerBackground from "./assets/banner-background.svg"
 import bannerContent from "./assets/banner-content.svg"
 import logoFlisol from "./assets/logo-flisol.png"
 import logoUpn from "./assets/logo-upn.png"
+import ronaldMelgarejo from "./assets/ronal_melgarejo.png"
+import nuritziSanchez from "./assets/nuritzi_sanchez.png"
+import sheylaBrena from "./assets/sheyla_brena.png"
+
+import APECIT from "./assets/apecit.png"
+import APESOL from "./assets/apesol.png"
+import Blender from "./assets/blender.svg"
+import Fedora from "./assets/fedora.svg"
+import GDG from "./assets/gdg.png"
+import GNOME from "./assets/gnome.svg"
+import MecInHome from "./assets/mec-in-home.png"
+import SoftButterfly from "./assets/softbutterfly.svg"
+import Mozilla from "./assets/mozilla.png"
+import Niit from "./assets/niit.svg"
+import Zonngo from "./assets/zonngo.svg"
 
 export default {
   name: "App",
@@ -439,7 +835,10 @@ export default {
         bannerBackground: bannerBackground,
         bannerContent: bannerContent,
         logoFlisol: logoFlisol,
-        logoUpn: logoUpn
+        logoUpn: logoUpn,
+        ronaldMelgarejo: ronaldMelgarejo,
+        nuritziSanchez: nuritziSanchez,
+        sheylaBrena: sheylaBrena
       },
       isToolbarFixed: true,
       toolbarHeight() {
@@ -457,10 +856,10 @@ export default {
             title: "Agenda",
             isActive: false
           },
-          speakers: {
-            title: "Ponentes",
-            isActive: false
-          },
+          // speakers: {
+          //   title: "Ponentes",
+          //   isActive: false
+          // },
           faq: {
             title: "FAQ",
             isActive: false
@@ -468,6 +867,54 @@ export default {
           location: {
             title: "Ubicación",
             isActive: false
+          },
+          footer: {
+            sponsors: {
+              APECIT: {
+                name: "APECIT",
+                logo: APECIT
+              },
+              APESOL: {
+                name: "APESOL",
+                logo: APESOL
+              },
+              Blender: {
+                name: "Blender",
+                logo: Blender
+              },
+              Fedora: {
+                name: "Fedora",
+                logo: Fedora
+              },
+              GNOME: {
+                name: "GNOME",
+                logo: GNOME
+              },
+              Mozilla: {
+                name: "Mozilla",
+                logo: Mozilla
+              },
+              // Niit: {
+              //   name: "Niit",
+              //   logo: Niit
+              // },
+              MecInHome: {
+                name: "MecInHome",
+                logo: MecInHome
+              },
+              // Zonngo: {
+              //   name: "Zonngo",
+              //   logo: Zonngo
+              // },
+              SoftButterfly: {
+                name: "SoftButterfly",
+                logo: SoftButterfly
+              },
+              GDG: {
+                name: "GDG",
+                logo: GDG
+              }
+            }
           }
         }
       },
@@ -477,7 +924,7 @@ export default {
           lng: -77.067865
         },
         options: {
-          draggable: false,
+          draggable: true,
           disableDefaultUI: true,
           styles: [
             {
