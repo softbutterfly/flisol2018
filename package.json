@@ -1,6 +1,6 @@
 {
   "name": "flisol-lima-2018",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Web Site For Flisol 2018 at Lima",
   "main": "index.js",
   "repository": "git@gitlab.com:softbutterfly/flisol-lima-2018.git",
