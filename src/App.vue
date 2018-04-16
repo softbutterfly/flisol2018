@@ -20,7 +20,7 @@
                 <v-toolbar-side-icon></v-toolbar-side-icon>
               </v-toolbar-title>
               <v-list>
-                <v-list-tile v-for="(section, sectionId) in content.sections" :key="section.title" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+                <v-list-tile v-for="(section, sectionId) in content.sections" v-if="section.includeInMeu" :key="section.title" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
                   <v-list-tile-title v-text="section.title"></v-list-tile-title>
                 </v-list-tile>
               </v-list>
@@ -571,7 +571,7 @@
                 <img class="logo" :src="assets.logoUpn" alt="FLISOL">
               </v-flex>
               <v-flex xs12 class="logo-holder white sponsors" text-xs-center>
-                <img v-for="(sponsor, name) in content.sections.footer.sponsors" :key="name" class="logo" :src="sponsor.logo" alt="sponsor.name">
+                <img v-for="(sponsor, name) in content.sections.footer.sponsors" :key="name" class="logo" :src="sponsor.logo" :alt="sponsor.name" :title="sponsor.name">
               </v-flex>
             </v-layout>
           </v-container>
@@ -849,6 +849,7 @@ export default {
       content: {
         sections: {
           home: {
+            includeInMeu: true,
             title: "Inicio",
             isActive: true
           },
@@ -857,18 +858,22 @@ export default {
             isActive: false
           },
           // speakers: {
+          //   includeInMeu: true,
           //   title: "Ponentes",
           //   isActive: false
           // },
           faq: {
+            includeInMeu: true,
             title: "FAQ",
             isActive: false
           },
           location: {
+            includeInMeu: true,
             title: "Ubicación",
             isActive: false
           },
           footer: {
+            includeInMeu: false,
             sponsors: {
               APECIT: {
                 name: "APECIT",
