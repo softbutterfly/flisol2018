@@ -20,17 +20,21 @@
                 <v-toolbar-side-icon></v-toolbar-side-icon>
               </v-toolbar-title>
               <v-list>
-                <v-list-tile v-for="(section, sectionId) in content.sections" v-if="section.includeInMeu" :key="section.title" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
-                  <v-list-tile-title v-text="section.title"></v-list-tile-title>
-                </v-list-tile>
+                <template v-for="(section, sectionId) in content.sections">
+                  <v-list-tile v-if="section.includeInMeu"  :key="sectionId" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+                    <v-list-tile-title v-text="section.title"></v-list-tile-title>
+                  </v-list-tile>
+                </template>
               </v-list>
             </v-menu>
             <v-toolbar-title class="hidden-md-and-up">
               {{ activeSection }}
             </v-toolbar-title>
-            <v-toolbar-items class="hidden-sm-and-down" v-for="(section, sectionId) in content.sections" :key="section.title" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
-              <v-btn flat>{{ section.title }}</v-btn>
-            </v-toolbar-items>
+            <template v-for="(section, sectionId) in content.sections">
+              <v-toolbar-items class="hidden-sm-and-down" v-if="section.includeInMeu" :key="section.title" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+                <v-btn flat>{{ section.title }}</v-btn>
+              </v-toolbar-items>
+            </template>
             <v-spacer></v-spacer>
               <v-btn color="deep-purple darken-4" dark href="https://www.eventbrite.com.ar/e/flisol-lima-2018-tickets-34803732902?aff=efbevent" target="blank">
                 Registro
@@ -854,6 +858,7 @@ export default {
             isActive: true
           },
           schedule: {
+            includeInMeu: true,
             title: "Agenda",
             isActive: false
           },
