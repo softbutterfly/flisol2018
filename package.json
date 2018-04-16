@@ -8,9 +8,11 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "parcel index.html",
-    "build:prod": "parcel build index.html --out-dir dist",
+    "start:clean": "rm -r dist public",
+    "build:prod":
+      "parcel build index.html --public-url 'https://flisol.softbutterfly.io/' --out-dir public && cp ./favicon/* public/",
     "build:gitlab":
-      "parcel build index.html --public-url '/flisol-lima-2018/' --out-dir public"
+      "parcel build index.html --public-url 'https://softbutterfly.gitlab.io/flisol-lima-2018/' --out-dir public"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
