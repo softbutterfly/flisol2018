@@ -1,7 +1,9 @@
 pages:
+  image: yarnpkg/node-yarn
   stage: deploy
   script:
-    - echo "Nothing to do :D"
+    - yarn install
+    - yarn build:gitlab
   artifacts:
     paths:
     - public

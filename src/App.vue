@@ -54,7 +54,7 @@
                 </p>
 
                 <p>
-                  En la ciudad de <strong>Lima</strong> el festival sera
+                  En la ciudad de <strong>Lima</strong> el festival será
                   organizado por la <strong>UPN</strong> por segundo año consecutivo como sede del
                   evento.
                 </p>

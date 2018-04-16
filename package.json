@@ -1,6 +1,6 @@
 {
   "name": "flisol-lima-2018",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Web Site For Flisol 2018 at Lima",
   "main": "index.js",
   "repository": "git@gitlab.com:softbutterfly/flisol-lima-2018.git",
@@ -8,9 +8,11 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "parcel index.html",
-    "build:prod": "parcel build index.html --out-dir dist",
+    "start:clean": "rm -r dist public",
+    "build:prod":
+      "parcel build index.html --public-url 'https://flisol.softbutterfly.io/' --out-dir public && cp ./favicon/* public/",
     "build:gitlab":
-      "parcel build index.html --public-url '/flisol-lima-2018/' --out-dir public"
+      "parcel build index.html --public-url 'https://softbutterfly.gitlab.io/flisol-lima-2018/' --out-dir public"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
