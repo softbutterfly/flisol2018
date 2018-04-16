@@ -154,7 +154,7 @@
                     <img :src="assets.sheylaBrena" alt="Sheyla Breña">
                   </v-list-tile-avatar>
                   <v-list-tile-content>
-                    <v-list-tile-title>Ropas y electrónica con Arduino Lilipad</v-list-tile-title>
+                    <v-list-tile-title>Ropas electrónica con Arduino Lilipad</v-list-tile-title>
                     <v-list-tile-sub-title>Sheyla Breña</v-list-tile-sub-title>
                     <v-list-tile-sub-title>12:30 - 13:00</v-list-tile-sub-title>
                   </v-list-tile-content>
