@@ -13,8 +13,6 @@ pages:
     - yarn build:prod
     - scp -r public softbutterfly@54.183.211.90:/home/softbutterfly/sites/flisol.softbutterfly.io/public.new
     - ssh softbutterfly@54.183.211.90 -C "rm -r /home/softbutterfly/sites/flisol.softbutterfly.io/public && mv /home/softbutterfly/sites/flisol.softbutterfly.io/public.new /home/softbutterfly/sites/flisol.softbutterfly.io/public"
-    - scp -r public softbutterfly.aws:/home/softbutterfly/sites/flisol.softbutterfly.io/public.new
-    - ssh softbutterfly.aws -C "rm -r /home/softbutterfly/sites/flisol.softbutterfly.io/public && mv /home/softbutterfly/sites/flisol.softbutterfly.io/public.new /home/softbutterfly/sites/flisol.softbutterfly.io/public"
     - curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" -H "X-Auth-Email:$CLOUDFLARE_EMAIL" -H "X-Auth-Key:$CLOUDFLARE_API_KEY" -H "Content-Type:application/json" --data '{"purge_everything":true}'
     - yarn build:gitlab
   artifacts:
