@@ -1,5 +1,5 @@
 pages:
-  image: yarnpkg/node-yarn
+  image: mhart/alpine-node:lastest
   stage: deploy
   script:
     - yarn install
