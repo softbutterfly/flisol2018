@@ -1,5 +1,5 @@
 pages:
-  image: mhart/alpine-node:latest
+  image: mhart/alpine-node:8.11.1
   stage: deploy
   before_script:
     - 'which ssh-agent || ( apk update && apk add --no-cache openssh )'
