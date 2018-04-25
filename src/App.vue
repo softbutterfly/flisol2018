@@ -1,5 +1,5 @@
 <template>
-  <v-app light id="app" class="page grey lighten-4" v-scroll="onScroll" v-resize="onResize">
+  <v-app light id="app" class="page grey lighten-4" v-scroll="onScroll">
     <header class="header">
       <v-parallax class="banner" :src="assets.bannerBackground" alt="Flisol 2018 - Lima">
         <v-layout column align-center justify-center class="banner__content">
@@ -21,7 +21,7 @@
               </v-toolbar-title>
               <v-list>
                 <template v-for="(section, sectionId) in content.sections">
-                  <v-list-tile v-if="section.includeInMeu"  :key="sectionId" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+                  <v-list-tile v-if="section.includeInMeu"  :key="sectionId" @click="$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
                     <v-list-tile-title v-text="section.title"></v-list-tile-title>
                   </v-list-tile>
                 </template>
@@ -31,7 +31,7 @@
               {{ activeSection }}
             </v-toolbar-title>
             <template v-for="(section, sectionId) in content.sections">
-              <v-toolbar-items class="hidden-sm-and-down" v-if="section.includeInMeu" :key="section.title" @click="makeSectionActive(sectionId);$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+              <v-toolbar-items class="hidden-sm-and-down" v-if="section.includeInMeu" :key="section.title" @click="$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
                 <v-btn flat>{{ section.title }}</v-btn>
               </v-toolbar-items>
             </template>
@@ -534,7 +534,7 @@
                   </v-flex>
                 </v-layout>
               </v-flex>
-              <v-flex xs12  sm6>
+              <v-flex xs12 sm6>
                 <gmap-map
                   :center="map.center"
                   :zoom="15"
@@ -753,6 +753,17 @@ strong {
   }
 }
 
+#toolbar-container {
+  height: 56px;
+
+  @media (min-width:641px) {
+    height: 48px;
+  }
+
+  @media (min-width:960px) {
+    height: 64px;
+  }
+}
 #home {
 
 }
@@ -814,7 +825,7 @@ strong {
 import bannerBackground from "./assets/banner-background.svg"
 import bannerContent from "./assets/banner-content.svg"
 import logoFlisol from "./assets/logo-flisol.png"
-import logoUpn from "./assets/logo-upn.png"
+import logoUpn from "./assets/logo-upn.svg"
 import ronaldMelgarejo from "./assets/ronal_melgarejo.png"
 import nuritziSanchez from "./assets/nuritzi_sanchez.png"
 import sheylaBrena from "./assets/sheyla_brena.png"
@@ -1009,22 +1020,12 @@ export default {
   },
   watch: {},
   methods: {
-    makeToolbarFixed() {},
-    makeSectionActive(target) {
-      Object.values(this.content.sections).forEach(section => {
-        section.isActive = false
-      })
-      this.content.sections[target].isActive = true
-    },
     getActiveSection() {
       return Object.values(this.content.sections).filter(section => {
         return section.isActive
       })[0].title
     },
-    scrollTo(target) {
-      window.scrollIntoView(document.getElementById(target))
-    },
-    onScroll(e) {
+    onScroll() {
       let toolbarContainerBox = document
         .getElementById("toolbar-container")
         .getBoundingClientRect()
@@ -1049,13 +1050,67 @@ export default {
         toolbar.style.top = ""
         toolbar.style.zIndex = 0
       }
+
+      let sections = this.content.sections
+      sections = Object.keys(sections).filter(s => {
+        return sections[s].includeInMeu
+      })
+
+      sections.forEach(section => {
+        let sectionContainerBox = document
+          .getElementById(section)
+          .getBoundingClientRect()
+        let sectionTop = Math.abs(
+          document.body.getBoundingClientRect().top - sectionContainerBox.top
+        )
+
+        let sectionBottom = Math.abs(
+          document.body.getBoundingClientRect().top - sectionContainerBox.bottom
+        )
+
+        if (
+          sectionTop - 1.6 * this.toolbarHeight < scrollTop &&
+          scrollTop < sectionBottom - 1.6 * this.toolbarHeight
+        ) {
+          let activeSection = sections.filter(s => {
+            return this.content.sections[s].isActive
+          })[0]
+
+          if (activeSection != section) {
+            this.content.sections[activeSection].isActive = false
+            this.content.sections[section].isActive = true
+          }
+        }
+      })
     },
-    onResize(e) {
-      this.toolbarHeight = document.getElementById("toolbar")
-        ? document.getElementById("toolbar").clientHeight
-        : ""
+    onResize() {
+      let toolbarContainerBox = document
+        .getElementById("toolbar-container")
+        .getBoundingClientRect()
+      let toolbar = document.getElementById("toolbar")
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      let toolbarTop = Math.abs(
+        document.body.getBoundingClientRect().top - toolbarContainerBox.top
+      )
+
+      if (scrollTop >= toolbarTop) {
+        toolbar.style.right = toolbarContainerBox.left + "px"
+        toolbar.style.left = toolbarContainerBox.left + "px"
+      } else {
+        toolbar.style.width = ""
+        toolbar.style.right = ""
+      }
     }
   },
-  mounted() {}
+  mounted() {
+    this.onResize()
+
+    window.addEventListener("resize", this.onResize)
+  },
+  beforeDestroy() {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.onResize)
+    }
+  }
 }
 </script>
