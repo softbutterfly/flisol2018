@@ -11,7 +11,7 @@
         </v-layout>
       </v-parallax>
     </header>
-    <v-content id="main" class="main">
+    <v-content ref="main" id="main" class="main">
       <v-container>
         <v-card id="toolbar-container" :style="{height: toolbarHeight + 'px'}">
           <v-toolbar id="toolbar" color="white">
@@ -21,7 +21,7 @@
               </v-toolbar-title>
               <v-list>
                 <template v-for="(section, sectionId) in content.sections">
-                  <v-list-tile v-if="section.includeInMeu"  :key="sectionId" @click="$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+                  <v-list-tile v-if="section.includeInMeu"  :key="section.title" @click="scrollTo(sectionId)">
                     <v-list-tile-title v-text="section.title"></v-list-tile-title>
                   </v-list-tile>
                 </template>
@@ -31,7 +31,7 @@
               {{ activeSection }}
             </v-toolbar-title>
             <template v-for="(section, sectionId) in content.sections">
-              <v-toolbar-items class="hidden-sm-and-down" v-if="section.includeInMeu" :key="section.title" @click="$vuetify.goTo('#' + sectionId, {offset: -1.5*toolbarHeight})">
+              <v-toolbar-items class="hidden-sm-and-down" v-if="section.includeInMeu" :key="section.title" @click="scrollTo(sectionId)">
                 <v-btn flat>{{ section.title }}</v-btn>
               </v-toolbar-items>
             </template>
@@ -42,7 +42,7 @@
           </v-toolbar>
         </v-card>
 
-        <v-card id="home" class="section">
+        <v-card ref="home" id="home" class="section">
           <v-container fill-height fluid>
             <v-layout class="gutter" fill-height row wrap >
               <v-flex class="title" xs12 sm4 text-xs-left text-sm-right>
@@ -70,7 +70,7 @@
           </v-container>
         </v-card>
 
-        <v-card id="schedule" class="section" dark color="deep-purple darken-4">
+        <v-card ref="schedule" id="schedule" class="section" dark color="deep-purple darken-4">
           <v-container fill-height fluid>
             <v-layout fill-height row wrap>
               <v-flex class="title gutter" xs12>
@@ -84,15 +84,27 @@
             </v-layout>
           </v-container>
           <v-tabs v-model="active" color="deep-purple darken-4" dark slider-color="white" grow show-arrows height="56">
-            <v-tab ripple>
-              Sala de conferencias 03
+            <v-tab ripple v-for="entry in content.schedule" :key="entry.venue" >
+              {{ entry.venue }}
             </v-tab>
-            <v-tab ripple>
-              Laboratorio 12
-            </v-tab>
-            <v-tab ripple>
-              Salon A-203
-            </v-tab>
+
+            <v-tab-item class="white grey--text text--darken-4" ripple v-for="entry in content.schedule" :key="entry.venue">
+              <v-list three-line light v-for="talk in entry.talks" :key="talk.title">
+                <v-list-tile avatar>
+                  <v-list-tile-avatar :color="talk.iconColor || 'grey darken-1'">
+                    <v-icon v-if="talk.icon" dark>{{ talk.icon }}</v-icon>
+                    <img v-else-if="talk.avatar" dark :src="talk.avatar" :alt="talk.speaker || talk.title">
+                    <v-icon v-else dark>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title v-if="talk.title">{{ talk.title }}</v-list-tile-title>
+                    <v-list-tile-sub-title v-if="talk.speaker" >{{ talk.speaker }}</v-list-tile-sub-title>
+                    <v-list-tile-sub-title v-if="talk.schedule" >{{ talk.schedule }}</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-tab-item>
+
             <v-tab-item class="white grey--text text--darken-4">
               <v-list three-line light>
                 <v-list-tile avatar>
@@ -236,7 +248,6 @@
                 </v-list-tile>
               </v-list>
             </v-tab-item>
-
 
             <v-tab-item class="white grey--text text--darken-4">
               <v-list three-line light>
@@ -391,7 +402,7 @@
           </v-container>
         </v-card -->
 
-        <v-card id="faq" class="section">
+        <v-card ref="faq" id="faq" class="section">
           <v-container fill-height fluid>
             <v-layout fill-height row wrap>
               <v-flex class="title gutter" xs12>
@@ -481,7 +492,7 @@
           </v-expansion-panel>
         </v-card>
 
-        <v-card id="location" class="section">
+        <v-card ref="location" id="location" class="section">
           <v-container fill-height fluid>
             <v-layout class="gutter" fill-height row wrap >
               <v-flex class="no-margin" xs12 sm6>
@@ -746,7 +757,7 @@ strong {
   .logo-holder {
     .logo {
       height: 100px;
-      max-width: initial;
+      max-width: 100%;
       width: auto;
       padding: 12px;
     }
@@ -826,9 +837,15 @@ import bannerBackground from "./assets/banner-background.svg"
 import bannerContent from "./assets/banner-content.svg"
 import logoFlisol from "./assets/logo-flisol.png"
 import logoUpn from "./assets/logo-upn.svg"
+
 import ronaldMelgarejo from "./assets/ronal_melgarejo.png"
 import nuritziSanchez from "./assets/nuritzi_sanchez.png"
 import sheylaBrena from "./assets/sheyla_brena.png"
+import martinVuelta from "./assets/martin_vuelta.jpg"
+import jorgeGuerra from "./assets/jorge_guerra.jpg"
+import angelQuiroz from "./assets/angel_quiroz.jpg"
+import carlosJara from "./assets/carlos_jara.jpg"
+import cristopherAldave from "./assets/cristopher_aldave.jpg"
 
 import APECIT from "./assets/apecit.png"
 import APESOL from "./assets/apesol.png"
@@ -937,7 +954,162 @@ export default {
               }
             }
           }
-        }
+        },
+        schedule: [
+          {
+            venue: "Auditorio",
+            talks: [
+              {
+                title: "Como usar wordpress y no morir en el intento",
+                speaker: "Gerson Josue Perez Aguilar",
+                schedule: "9:00 - 10:00"
+              },
+              {
+                title: "Conociendo a GNOME",
+                speaker: "Nurtizi Sanchez",
+                avatar: nuritziSanchez,
+                schedule: "10:00 - 10:30"
+              },
+              {
+                title: "Ponencia sorpresa",
+                speaker: "Elizabeth Chumioque y Luis Soria",
+                schedule: "10:30 - 11:30"
+              },
+              {
+                title:
+                  "Arduino MKR, familia tecnológica basada en Open Hardware",
+                speaker: "Jorge Guerra",
+                avatar: jorgeGuerra,
+                schedule: "11:30 - 12:30"
+              },
+              {
+                title: "Ropa electronica con Arduino Lilipad",
+                speaker: "Sheyla Breña",
+                avatar: sheylaBrena,
+                schedule: "12:30 - 13:00 "
+              },
+              {
+                title: "Refrigerio",
+                schedule: "13:00 - 13:30",
+                icon: "local_dining",
+                iconColor: "green darken-2"
+              },
+              {
+                title: "Uso software libre a diario, y no lo sabia",
+                speaker: "Jenner Fuentes",
+                schedule: "13:30 - 14:30 "
+              },
+              {
+                title: "¿Software Libre? ¿Qué es?",
+                speaker: "Pedro Muñoz",
+                schedule: "14:30 - 15:30 "
+              },
+              {
+                title: "Sobrevivir siendo mujer en el mundo del software libre",
+                speaker: "Fernanda Morales",
+                schedule: "15:30 - 16:00 "
+              },
+              {
+                title:
+                  "Chamilo LMS, plataforma de software libre para cursos virtuales",
+                speaker: "Yannick Warnier",
+                schedule: "16:00 - 17:00 "
+              },
+              {
+                title: "Cómo un electronico sobrevive en GNU/LINUX",
+                speaker: "Moises Stevend Meza Rodriguez",
+                schedule: "17:00 - 18:00 "
+              }
+            ]
+          },
+          {
+            venue: "Sala de conferencias 03",
+            talks: [
+              {
+                title: "Transformación digital",
+                speaker: "Ronald Melgarejo",
+                avatar: ronaldMelgarejo,
+                schedule: "9:30 - 11:00"
+              },
+              {
+                title: "Introduccion a Fedora",
+                speaker: "Solach Ccasa",
+                schedule: "11:00 - 12:00"
+              },
+              {
+                title: "IoT usando Microcontroladores Pic de Microchip",
+                speaker: "Javier Hernández",
+                schedule: "12:00 - 13:00"
+              },
+              {
+                title: "Refrigerio",
+                schedule: "13:00 - 13:30"
+              },
+              {
+                title:
+                  "Aplicaciones del protocolo estandarizado mundialmente para la Domotica KNX en el mundo",
+                speaker: "Brando Boza Ccoyllar",
+                schedule: "13:30 - 14:30"
+              },
+              {
+                title: "IOTA y arduino: alternativa Open al Blockchain",
+                speaker: "Christopher Pedro Luis Aldave Ovando",
+                avatar: cristopherAldave,
+                schedule: "14:30 - 15:30"
+              },
+              {
+                title: "IoT en GNU/Linux",
+                speaker: "Carlos Jara Alva",
+                avatar: carlosJara,
+                schedule: "15:30 - 16:30"
+              },
+              {
+                title: "HERE Technologies - Developer Platform",
+                speaker: "Anthony Machuca Espinoza",
+                schedule: "16:30 - 17:30"
+              }
+            ]
+          },
+          {
+            venue: "Laboratorio 12",
+            talks: [
+              {
+                title: "Desarrollando aplicaciones con Google Cloud",
+                speaker: "Milton Yarleque",
+                schedule: "10:00 - 12:00"
+              },
+              {
+                title: "Primeros pasos con InkScape",
+                speaker: "Leyla Marcelo",
+                schedule: "12:00 - 13:00"
+              },
+              {
+                title:
+                  "Comunicación GSM/GPRS/GPS/Bluetooth (iBeacon) usando Mircrocontroladores",
+                speaker: "Javier Hernández",
+                schedule: "13:30 - 14:00"
+              },
+              {
+                title: "Realidad Virtual en la Web",
+                speaker: "Angel Fernando Quiroz Campos",
+                avatar: angelQuiroz,
+                schedule: "14:00 - 16:00"
+              },
+              {
+                title:
+                  "Single Page Applications con Vue.js y Vuetify: La Web de Flisol Lima UPN",
+                speaker: "Martin Vuelta Rojas",
+                avatar: martinVuelta,
+                schedule: "16:00 - 17:00"
+              },
+              {
+                title: "Blender para todos",
+                speaker: "Eduardo Diaz",
+                schedule: "17:00 - 18:00"
+              }
+            ]
+          }
+        ]
       },
       map: {
         center: {
@@ -1024,6 +1196,17 @@ export default {
       return Object.values(this.content.sections).filter(section => {
         return section.isActive
       })[0].title
+    },
+    scrollTo(sectionId) {
+      document
+        .getElementById(sectionId)
+        .scrollIntoView({ block: "start", behavior: "smooth" })
+      // let sectionContainerBox = document
+      //   .getElementById(sectionId)
+      //   .getBoundingClientRect()
+      // let sectionTop = document.body.getBoundingClientRect().top
+
+      // this.$vuetify.goTo(sectionTop - 1.5 * this.toolbarHeight)
     },
     onScroll() {
       let toolbarContainerBox = document
