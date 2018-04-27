@@ -13,7 +13,7 @@
     </header>
     <v-content ref="main" id="main" class="main">
       <v-container>
-        <v-card id="toolbar-container" :style="{height: toolbarHeight + 'px'}">
+        <v-card id="toolbar-container">
           <v-toolbar id="toolbar" color="white">
             <v-menu close-on-content-click offset-x class="hidden-md-and-up">
               <v-toolbar-title slot="activator">
@@ -83,314 +83,40 @@
               </v-flex>
             </v-layout>
           </v-container>
+          <v-list three-line class="deep-purple darken-4">
+            <v-list-tile avatar>
+              <v-list-tile-avatar color="white">
+                <v-icon class="deep-purple--text text--darken-4">event</v-icon>
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title><strong>Sábado 28 abril de 2018</strong></v-list-tile-title>
+                <v-list-tile-sub-title class="white--text">Universidad Privada del Norte</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="white--text">08:30 a 18:00</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
           <v-tabs v-model="active" color="deep-purple darken-4" dark slider-color="white" grow show-arrows height="56">
             <v-tab ripple v-for="entry in content.schedule" :key="entry.venue" >
               {{ entry.venue }}
             </v-tab>
 
             <v-tab-item class="white grey--text text--darken-4" ripple v-for="entry in content.schedule" :key="entry.venue">
-              <v-list three-line light v-for="talk in entry.talks" :key="talk.title">
-                <v-list-tile avatar>
-                  <v-list-tile-avatar :color="talk.iconColor || 'grey darken-1'">
-                    <v-icon v-if="talk.icon" dark>{{ talk.icon }}</v-icon>
-                    <img v-else-if="talk.avatar" dark :src="talk.avatar" :alt="talk.speaker || talk.title">
-                    <v-icon v-else dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title v-if="talk.title">{{ talk.title }}</v-list-tile-title>
-                    <v-list-tile-sub-title v-if="talk.speaker" >{{ talk.speaker }}</v-list-tile-sub-title>
-                    <v-list-tile-sub-title v-if="talk.schedule" >{{ talk.schedule }}</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-tab-item>
-
-            <v-tab-item class="white grey--text text--darken-4">
               <v-list three-line light>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="orange lighten-2">
-                    <v-icon dark>event</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
-                    <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="red darken-2">
-                    <v-icon dark>edit</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Inscripciones</v-list-tile-title>
-                    <v-list-tile-sub-title>09:00 a 09:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar>
-                    <img :src="assets.ronaldMelgarejo" alt="Ronald Melgarejo">
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Transformación digital</v-list-tile-title>
-                    <v-list-tile-sub-title>Ronald Melgarejo</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>9:30 - 10:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar>
-                    <img :src="assets.nuritziSanchez" alt="Nuritzi Sanchez">
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Conociendo a GNOME</v-list-tile-title>
-                    <v-list-tile-sub-title>Nurtizi Sanchez</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>10:30 -11:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Arduino MKR, familia tecnologica basada en Open Hardware</v-list-tile-title>
-                    <v-list-tile-sub-title>Jorge Guerra</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>11:30 - 12:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar>
-                    <img :src="assets.sheylaBrena" alt="Sheyla Breña">
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Ropa electrónica con Arduino Lilipad</v-list-tile-title>
-                    <v-list-tile-sub-title>Sheyla Breña</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>12:30 - 13:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="green darken-2">
-                    <v-icon dark>local_dining</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Regrigerio</v-list-tile-title>
-                    <v-list-tile-sub-title>13:00 - 13:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Domotica</v-list-tile-title>
-                    <v-list-tile-sub-title>Oscar Castillo</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>13:30 - 14:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>GNOME</v-list-tile-title>
-                    <v-list-tile-sub-title>Fefa Morales</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>14:30 - 15:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>IOTA y arduino: alternativa Open al Blockchain</v-list-tile-title>
-                    <v-list-tile-sub-title>Christopher Aldave</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>15:00 - 16:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Blender en la medicina</v-list-tile-title>
-                    <v-list-tile-sub-title>Eduardo Diaz</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>16:00 - 17:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Blender en el diseño</v-list-tile-title>
-                    <v-list-tile-sub-title>Sandro</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>17:00 - 18:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-tab-item>
-
-            <v-tab-item class="white grey--text text--darken-4">
-              <v-list three-line light>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="orange lighten-2">
-                    <v-icon dark>event</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
-                    <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="red darken-2">
-                    <v-icon dark>edit</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Inscripciones</v-list-tile-title>
-                    <v-list-tile-sub-title>09:00 a 09:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Integrando Kotlin a proyectos android</v-list-tile-title>
-                    <v-list-tile-sub-title>Eduardo Medina</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>11:00 - 12:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Desarrollando aplicaciones con Google Cloud</v-list-tile-title>
-                    <v-list-tile-sub-title>Milton Yarleque</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>12:00 -13:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="green darken-2">
-                    <v-icon dark>local_dining</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Regrigerio</v-list-tile-title>
-                    <v-list-tile-sub-title>13:00 - 13:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Realidad Virtual en la Web</v-list-tile-title>
-                    <v-list-tile-sub-title>Angel Quiroz</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>14:00 - 16:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Single Page Applications con Vue.js y Vuetify: La Web de Flisol Lima UPN</v-list-tile-title>
-                    <v-list-tile-sub-title>Martin Vuelta</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>16:00 - 17:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-tab-item>
-
-            <v-tab-item class="white grey--text text--darken-4">
-              <v-list three-line light>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="orange lighten-2">
-                    <v-icon dark>event</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
-                    <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="red darken-2">
-                    <v-icon dark>edit</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Inscripciones</v-list-tile-title>
-                    <v-list-tile-sub-title>09:00 a 09:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>APESOL</v-list-tile-title>
-                    <v-list-tile-sub-title>Pedro Muñoz</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>14:30 - 15:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Fedora</v-list-tile-title>
-                    <v-list-tile-sub-title>Carlos Jara</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>15:30 - 16:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-
-                <v-divider light></v-divider>
-                <v-list-tile avatar>
-                  <v-list-tile-avatar color="grey darken-1">
-                    <v-icon dark>account_circle</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-title>HERE Technologies - Developer Platform</v-list-tile-title>
-                    <v-list-tile-sub-title>Anthony Machuca</v-list-tile-sub-title>
-                    <v-list-tile-sub-title>16:30 - 17:30</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
+                <template v-for="(talk, key, index) in entry.talks">
+                  <v-list-tile avatar :key="talk.title">
+                    <v-list-tile-avatar :color="talk.iconColor || 'grey darken-1'">
+                      <v-icon v-if="talk.icon" dark>{{ talk.icon }}</v-icon>
+                      <img v-else-if="talk.avatar" dark :src="talk.avatar" :alt="talk.speaker || talk.title">
+                      <v-icon v-else dark>account_circle</v-icon>
+                    </v-list-tile-avatar>
+                    <v-list-tile-content>
+                      <v-list-tile-title v-if="talk.title">{{ talk.title }}</v-list-tile-title>
+                      <v-list-tile-sub-title v-if="talk.speaker" >{{ talk.speaker }}</v-list-tile-sub-title>
+                      <v-list-tile-sub-title v-if="talk.schedule" >{{ talk.schedule }}</v-list-tile-sub-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                  <v-divider light v-if="index != Object.keys(entry.talks).length - 1" :key="talk.key"></v-divider>
+                </template>
               </v-list>
             </v-tab-item>
           </v-tabs>
@@ -527,7 +253,7 @@
                         </v-list-tile-avatar>
                         <v-list-tile-content>
                           <v-list-tile-title>Sábado 28 abril de 2018</v-list-tile-title>
-                          <v-list-tile-sub-title>09:00 a 18:00</v-list-tile-sub-title>
+                          <v-list-tile-sub-title>08:30 a 18:30</v-list-tile-sub-title>
                         </v-list-tile-content>
                       </v-list-tile>
                       <v-divider></v-divider>
@@ -873,11 +599,6 @@ export default {
         sheylaBrena: sheylaBrena
       },
       isToolbarFixed: true,
-      toolbarHeight() {
-        return document.getElementById("toolbar")
-          ? document.getElementById("toolbar").clientHeight
-          : ""
-      },
       content: {
         sections: {
           home: {
@@ -955,161 +676,181 @@ export default {
             }
           }
         },
-        schedule: [
-          {
+        schedule: {
+          a: {
             venue: "Auditorio",
-            talks: [
-              {
+            talks: {
+              0: {
+                title: "Inaguración",
+                schedule: "8:30 - 9:00",
+                icon: "local_activity",
+                iconColor: "amber darken-2"
+              },
+              1: {
                 title: "Como usar wordpress y no morir en el intento",
                 speaker: "Gerson Josue Perez Aguilar",
                 schedule: "9:00 - 10:00"
               },
-              {
+              2: {
                 title: "Conociendo a GNOME",
                 speaker: "Nurtizi Sanchez",
                 avatar: nuritziSanchez,
                 schedule: "10:00 - 10:30"
               },
-              {
+              3: {
                 title: "Ponencia sorpresa",
                 speaker: "Elizabeth Chumioque y Luis Soria",
                 schedule: "10:30 - 11:30"
               },
-              {
+              4: {
                 title:
                   "Arduino MKR, familia tecnológica basada en Open Hardware",
                 speaker: "Jorge Guerra",
                 avatar: jorgeGuerra,
                 schedule: "11:30 - 12:30"
               },
-              {
+              5: {
                 title: "Ropa electronica con Arduino Lilipad",
                 speaker: "Sheyla Breña",
                 avatar: sheylaBrena,
                 schedule: "12:30 - 13:00 "
               },
-              {
+              6: {
                 title: "Refrigerio",
                 schedule: "13:00 - 13:30",
                 icon: "local_dining",
                 iconColor: "green darken-2"
               },
-              {
+              7: {
                 title: "Uso software libre a diario, y no lo sabia",
                 speaker: "Jenner Fuentes",
                 schedule: "13:30 - 14:30 "
               },
-              {
+              8: {
                 title: "¿Software Libre? ¿Qué es?",
                 speaker: "Pedro Muñoz",
                 schedule: "14:30 - 15:30 "
               },
-              {
+              9: {
                 title: "Sobrevivir siendo mujer en el mundo del software libre",
                 speaker: "Fernanda Morales",
                 schedule: "15:30 - 16:00 "
               },
-              {
+              10: {
                 title:
                   "Chamilo LMS, plataforma de software libre para cursos virtuales",
                 speaker: "Yannick Warnier",
                 schedule: "16:00 - 17:00 "
               },
-              {
+              11: {
                 title: "Cómo un electronico sobrevive en GNU/LINUX",
                 speaker: "Moises Stevend Meza Rodriguez",
                 schedule: "17:00 - 18:00 "
+              },
+              12: {
+                title: "Clausura",
+                schedule: "18:00 - 18:300",
+                icon: "local_activity",
+                iconColor: "amber darken-2"
               }
-            ]
+            }
           },
-          {
+          b: {
             venue: "Sala de conferencias 03",
-            talks: [
-              {
+            talks: {
+              0: {
                 title: "Transformación digital",
                 speaker: "Ronald Melgarejo",
                 avatar: ronaldMelgarejo,
                 schedule: "9:30 - 11:00"
               },
-              {
+              1: {
                 title: "Introduccion a Fedora",
                 speaker: "Solach Ccasa",
                 schedule: "11:00 - 12:00"
               },
-              {
+              2: {
                 title: "IoT usando Microcontroladores Pic de Microchip",
                 speaker: "Javier Hernández",
                 schedule: "12:00 - 13:00"
               },
-              {
+              3: {
                 title: "Refrigerio",
-                schedule: "13:00 - 13:30"
+                schedule: "13:00 - 13:30",
+                icon: "local_dining",
+                iconColor: "green darken-2"
               },
-              {
+              4: {
                 title:
                   "Aplicaciones del protocolo estandarizado mundialmente para la Domotica KNX en el mundo",
                 speaker: "Brando Boza Ccoyllar",
                 schedule: "13:30 - 14:30"
               },
-              {
+              5: {
                 title: "IOTA y arduino: alternativa Open al Blockchain",
                 speaker: "Christopher Pedro Luis Aldave Ovando",
                 avatar: cristopherAldave,
                 schedule: "14:30 - 15:30"
               },
-              {
+              6: {
                 title: "IoT en GNU/Linux",
                 speaker: "Carlos Jara Alva",
                 avatar: carlosJara,
                 schedule: "15:30 - 16:30"
               },
-              {
+              7: {
                 title: "HERE Technologies - Developer Platform",
                 speaker: "Anthony Machuca Espinoza",
                 schedule: "16:30 - 17:30"
               }
-            ]
+            }
           },
-          {
+          c: {
             venue: "Laboratorio 12",
-            talks: [
-              {
+            talks: {
+              0: {
                 title: "Desarrollando aplicaciones con Google Cloud",
                 speaker: "Milton Yarleque",
                 schedule: "10:00 - 12:00"
               },
-              {
+              1: {
                 title: "Primeros pasos con InkScape",
                 speaker: "Leyla Marcelo",
                 schedule: "12:00 - 13:00"
               },
-              {
+              2: {
+                title: "Refrigerio",
+                schedule: "13:00 - 13:30",
+                icon: "local_dining",
+                iconColor: "green darken-2"
+              },
+              3: {
                 title:
                   "Comunicación GSM/GPRS/GPS/Bluetooth (iBeacon) usando Mircrocontroladores",
                 speaker: "Javier Hernández",
                 schedule: "13:30 - 14:00"
               },
-              {
+              4: {
                 title: "Realidad Virtual en la Web",
                 speaker: "Angel Fernando Quiroz Campos",
                 avatar: angelQuiroz,
                 schedule: "14:00 - 16:00"
               },
-              {
+              5: {
                 title:
                   "Single Page Applications con Vue.js y Vuetify: La Web de Flisol Lima UPN",
                 speaker: "Martin Vuelta Rojas",
                 avatar: martinVuelta,
                 schedule: "16:00 - 17:00"
               },
-              {
+              6: {
                 title: "Blender para todos",
                 speaker: "Eduardo Diaz",
                 schedule: "17:00 - 18:00"
               }
-            ]
+            }
           }
-        ]
+        }
       },
       map: {
         center: {
@@ -1188,6 +929,11 @@ export default {
   computed: {
     activeSection() {
       return this.getActiveSection()
+    },
+    toolbarHeight() {
+      return document.getElementById("toolbar")
+        ? document.getElementById("toolbar").clientHeight
+        : 0
     }
   },
   watch: {},
@@ -1198,15 +944,13 @@ export default {
       })[0].title
     },
     scrollTo(sectionId) {
-      document
-        .getElementById(sectionId)
-        .scrollIntoView({ block: "start", behavior: "smooth" })
-      // let sectionContainerBox = document
-      //   .getElementById(sectionId)
-      //   .getBoundingClientRect()
-      // let sectionTop = document.body.getBoundingClientRect().top
+      let target = this.$refs[sectionId]
 
-      // this.$vuetify.goTo(sectionTop - 1.5 * this.toolbarHeight)
+      target &&
+        this.$vuetify.goTo(target, {
+          easing: "easeInOutQuad",
+          offset: -1.5 * this.toolbarHeight
+        })
     },
     onScroll() {
       let toolbarContainerBox = document
@@ -1287,7 +1031,7 @@ export default {
   },
   mounted() {
     this.onResize()
-
+    this.onScroll()
     window.addEventListener("resize", this.onResize)
   },
   beforeDestroy() {
