@@ -11,6 +11,7 @@
         </v-layout>
       </v-parallax>
     </header>
+
     <v-content ref="main" id="main" class="main">
       <v-container>
         <v-card id="toolbar-container">
@@ -95,7 +96,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list>
-          <v-tabs v-model="active" color="deep-purple darken-4" dark slider-color="white" grow show-arrows height="56">
+          <v-tabs color="deep-purple darken-4" dark slider-color="white" grow show-arrows height="56">
             <v-tab ripple v-for="entry in content.schedule" :key="entry.venue" >
               {{ entry.venue }}
             </v-tab>
@@ -285,7 +286,7 @@
                     :options="{
                       title: 'Universidad Privada del Norte'
                     }"
-                    :title="SoftButterfly"
+                    title="SoftButterfly"
                     :clickable="true"
                     :draggable="false">
                   </gmap-marker>
@@ -332,7 +333,7 @@
   </v-app>
 </template>
 
-<style lang="sass">
+<style lang="less">
 *,
 *:hover,
 *:focus,
@@ -356,11 +357,15 @@ strong {
 }
 
 .page {
-  postion: relative;
+  position: relative;
 }
 
 .application {
-  font-family: 'Raleway', 'Roboto', sans-serif;
+  font-family: "Raleway", "Roboto", sans-serif;
+
+  *:not(.material-icons) {
+    font-family: inherit;
+  }
 }
 
 .gutter {
@@ -383,25 +388,25 @@ strong {
   }
 }
 
-.parallax {
-  height: calc(150vh)!important;
+.v-parallax {
+  height: 150vh !important;
   min-height: 579px;
 
-  .parallax__content {
-    height: 100vh!important;
+  .v-parallax__content {
+    height: 100vh !important;
     min-height: 500px;
   }
 }
 
-.list__tile__content {
+.v-list__tile__content {
   width: 0;
 }
 
 .header {
-  z-index:0;
+  z-index: 0;
 }
 
-.toolbar__title {
+.v-toolbar__title {
   margin: 0;
 }
 
@@ -420,6 +425,7 @@ strong {
     width: 100%;
     flex: none;
     margin-bottom: 16px;
+
     .hashtag {
       width: 100%;
       margin: 0;
@@ -435,11 +441,11 @@ strong {
   z-index: 1;
   margin-top: -40vh;
 
-  .card ~ .card {
+  .v-card ~ .v-card {
     margin-top: 32px;
   }
 
-  & > .content--wrap {
+  & > .v-content__wrap {
     & > .container {
       padding-bottom: 0;
 
@@ -452,7 +458,7 @@ strong {
   }
 }
 
-.card.section {
+.v-card.section {
   .title {
     h1 {
       font-weight: 300;
@@ -493,24 +499,21 @@ strong {
 #toolbar-container {
   height: 56px;
 
-  @media (min-width:641px) {
+  @media (min-width: 641px) {
     height: 48px;
   }
 
-  @media (min-width:960px) {
+  @media (min-width: 960px) {
     height: 64px;
   }
 }
-#home {
-
-}
 
 #faq {
-  .expansion-panel {
+  .v-expansion-panel {
     box-shadow: none;
-    border-top: 1px solid rgba(0,0,0,.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 
-    .expansion-panel__header {
+    .v-expansion-panel__header {
       position: relative;
       padding: 24px 24px 24px 60px;
       font-weight: 700;
@@ -523,9 +526,9 @@ strong {
       }
     }
 
-    .expansion-panel__body {
-      .card {
-        .card__text {
+    .v-expansion-panel__body {
+      .v-card {
+        .v-card__text {
           font-size: 1em;
           padding: 0 24px 24px 60px;
           font-weight: 400;
@@ -559,39 +562,35 @@ strong {
 </style>
 
 <script>
-import bannerBackground from "./assets/banner-background.svg"
-import bannerContent from "./assets/banner-content.svg"
-import logoFlisol from "./assets/logo-flisol.png"
-import logoUpn from "./assets/logo-upn.svg"
+import logoFlisol from '@/assets/images/logo-flisol.png'
+import logoUpn from '@/assets/images/logo-upn.svg'
 
-import ronaldMelgarejo from "./assets/ronal_melgarejo.png"
-import nuritziSanchez from "./assets/nuritzi_sanchez.png"
-import sheylaBrena from "./assets/sheyla_brena.png"
-import martinVuelta from "./assets/martin_vuelta.jpg"
-import jorgeGuerra from "./assets/jorge_guerra.jpg"
-import angelQuiroz from "./assets/angel_quiroz.jpg"
-import carlosJara from "./assets/carlos_jara.jpg"
-import cristopherAldave from "./assets/cristopher_aldave.jpg"
+import ronaldMelgarejo from '@/assets/images/ronal_melgarejo.png'
+import nuritziSanchez from '@/assets/images/nuritzi_sanchez.png'
+import sheylaBrena from '@/assets/images/sheyla_brena.png'
+import martinVuelta from '@/assets/images/martin_vuelta.jpg'
+import jorgeGuerra from '@/assets/images/jorge_guerra.jpg'
+import angelQuiroz from '@/assets/images/angel_quiroz.jpg'
+import carlosJara from '@/assets/images/carlos_jara.jpg'
+import cristopherAldave from '@/assets/images/cristopher_aldave.jpg'
 
-import APECIT from "./assets/apecit.png"
-import APESOL from "./assets/apesol.png"
-import Blender from "./assets/blender.svg"
-import Fedora from "./assets/fedora.svg"
-import GDG from "./assets/gdg.png"
-import GNOME from "./assets/gnome.svg"
-import MecInHome from "./assets/mec-in-home.png"
-import SoftButterfly from "./assets/softbutterfly.svg"
-import Mozilla from "./assets/mozilla.png"
-import Niit from "./assets/niit.svg"
-import Zonngo from "./assets/zonngo.svg"
+import APECIT from '@/assets/images/apecit.png'
+import APESOL from '@/assets/images/apesol.png'
+import Blender from '@/assets/images/blender.svg'
+import Fedora from '@/assets/images/fedora.svg'
+import GDG from '@/assets/images/gdg.png'
+import GNOME from '@/assets/images/gnome.svg'
+import MecInHome from '@/assets/images/mec-in-home.png'
+import SoftButterfly from '@/assets/images/softbutterfly.svg'
+import Mozilla from '@/assets/images/mozilla.png'
 
 export default {
-  name: "App",
-  data() {
+  name: 'App',
+  data () {
     return {
       assets: {
-        bannerBackground: bannerBackground,
-        bannerContent: bannerContent,
+        bannerBackground: require('@/assets/images/banner-background.svg'),
+        bannerContent: require('@/assets/images/banner-content.svg'),
         logoFlisol: logoFlisol,
         logoUpn: logoUpn,
         ronaldMelgarejo: ronaldMelgarejo,
@@ -603,12 +602,12 @@ export default {
         sections: {
           home: {
             includeInMeu: true,
-            title: "Inicio",
+            title: 'Inicio',
             isActive: true
           },
           schedule: {
             includeInMeu: true,
-            title: "Agenda",
+            title: 'Agenda',
             isActive: false
           },
           // speakers: {
@@ -618,39 +617,39 @@ export default {
           // },
           faq: {
             includeInMeu: true,
-            title: "FAQ",
+            title: 'FAQ',
             isActive: false
           },
           location: {
             includeInMeu: true,
-            title: "Ubicación",
+            title: 'Ubicación',
             isActive: false
           },
           footer: {
             includeInMeu: false,
             sponsors: {
               APECIT: {
-                name: "APECIT",
+                name: 'APECIT',
                 logo: APECIT
               },
               APESOL: {
-                name: "APESOL",
+                name: 'APESOL',
                 logo: APESOL
               },
               Blender: {
-                name: "Blender",
+                name: 'Blender',
                 logo: Blender
               },
               Fedora: {
-                name: "Fedora",
+                name: 'Fedora',
                 logo: Fedora
               },
               GNOME: {
-                name: "GNOME",
+                name: 'GNOME',
                 logo: GNOME
               },
               Mozilla: {
-                name: "Mozilla",
+                name: 'Mozilla',
                 logo: Mozilla
               },
               // Niit: {
@@ -658,7 +657,7 @@ export default {
               //   logo: Niit
               // },
               MecInHome: {
-                name: "MecInHome",
+                name: 'MecInHome',
                 logo: MecInHome
               },
               // Zonngo: {
@@ -666,11 +665,11 @@ export default {
               //   logo: Zonngo
               // },
               SoftButterfly: {
-                name: "SoftButterfly",
+                name: 'SoftButterfly',
                 logo: SoftButterfly
               },
               GDG: {
-                name: "GDG",
+                name: 'GDG',
                 logo: GDG
               }
             }
@@ -678,175 +677,175 @@ export default {
         },
         schedule: {
           a: {
-            venue: "Auditorio",
+            venue: 'Auditorio',
             talks: {
               0: {
-                title: "Inaguración",
-                schedule: "8:30 - 9:00",
-                icon: "local_activity",
-                iconColor: "amber darken-2"
+                title: 'Inaguración',
+                schedule: '8:30 - 9:00',
+                icon: 'local_activity',
+                iconColor: 'amber darken-2'
               },
               1: {
-                title: "Como usar wordpress y no morir en el intento",
-                speaker: "Gerson Josue Perez Aguilar",
-                schedule: "9:00 - 10:00"
+                title: 'Como usar wordpress y no morir en el intento',
+                speaker: 'Gerson Josue Perez Aguilar',
+                schedule: '9:00 - 10:00'
               },
               2: {
-                title: "Conociendo a GNOME",
-                speaker: "Nurtizi Sanchez",
+                title: 'Conociendo a GNOME',
+                speaker: 'Nurtizi Sanchez',
                 avatar: nuritziSanchez,
-                schedule: "10:00 - 10:30"
+                schedule: '10:00 - 10:30'
               },
               3: {
-                title: "Ponencia sorpresa",
-                speaker: "Elizabeth Chumioque y Luis Soria",
-                schedule: "10:30 - 11:30"
+                title: 'Ponencia sorpresa',
+                speaker: 'Elizabeth Chumioque y Luis Soria',
+                schedule: '10:30 - 11:30'
               },
               4: {
                 title:
-                  "Arduino MKR, familia tecnológica basada en Open Hardware",
-                speaker: "Jorge Guerra",
+                  'Arduino MKR, familia tecnológica basada en Open Hardware',
+                speaker: 'Jorge Guerra',
                 avatar: jorgeGuerra,
-                schedule: "11:30 - 12:30"
+                schedule: '11:30 - 12:30'
               },
               5: {
-                title: "Ropa electronica con Arduino Lilipad",
-                speaker: "Sheyla Breña",
+                title: 'Ropa electronica con Arduino Lilipad',
+                speaker: 'Sheyla Breña',
                 avatar: sheylaBrena,
-                schedule: "12:30 - 13:00 "
+                schedule: '12:30 - 13:00 '
               },
               6: {
-                title: "Refrigerio",
-                schedule: "13:00 - 13:30",
-                icon: "local_dining",
-                iconColor: "green darken-2"
+                title: 'Refrigerio',
+                schedule: '13:00 - 13:30',
+                icon: 'local_dining',
+                iconColor: 'green darken-2'
               },
               7: {
-                title: "Uso software libre a diario, y no lo sabia",
-                speaker: "Jenner Fuentes",
-                schedule: "13:30 - 14:30 "
+                title: 'Uso software libre a diario, y no lo sabia',
+                speaker: 'Jenner Fuentes',
+                schedule: '13:30 - 14:30 '
               },
               8: {
-                title: "¿Software Libre? ¿Qué es?",
-                speaker: "Pedro Muñoz",
-                schedule: "14:30 - 15:30 "
+                title: '¿Software Libre? ¿Qué es?',
+                speaker: 'Pedro Muñoz',
+                schedule: '14:30 - 15:30 '
               },
               9: {
-                title: "Sobrevivir siendo mujer en el mundo del software libre",
-                speaker: "Fernanda Morales",
-                schedule: "15:30 - 16:00 "
+                title: 'Sobrevivir siendo mujer en el mundo del software libre',
+                speaker: 'Fernanda Morales',
+                schedule: '15:30 - 16:00 '
               },
               10: {
                 title:
-                  "Chamilo LMS, plataforma de software libre para cursos virtuales",
-                speaker: "Yannick Warnier",
-                schedule: "16:00 - 17:00 "
+                  'Chamilo LMS, plataforma de software libre para cursos virtuales',
+                speaker: 'Yannick Warnier',
+                schedule: '16:00 - 17:00 '
               },
               11: {
-                title: "Cómo un electronico sobrevive en GNU/LINUX",
-                speaker: "Moises Stevend Meza Rodriguez",
-                schedule: "17:00 - 18:00 "
+                title: 'Cómo un electronico sobrevive en GNU/LINUX',
+                speaker: 'Moises Stevend Meza Rodriguez',
+                schedule: '17:00 - 18:00 '
               },
               12: {
-                title: "Clausura",
-                schedule: "18:00 - 18:300",
-                icon: "local_activity",
-                iconColor: "amber darken-2"
+                title: 'Clausura',
+                schedule: '18:00 - 18:300',
+                icon: 'local_activity',
+                iconColor: 'amber darken-2'
               }
             }
           },
           b: {
-            venue: "Sala de conferencias 03",
+            venue: 'Sala de conferencias 03',
             talks: {
               0: {
-                title: "Transformación digital",
-                speaker: "Ronald Melgarejo",
+                title: 'Transformación digital',
+                speaker: 'Ronald Melgarejo',
                 avatar: ronaldMelgarejo,
-                schedule: "9:30 - 11:00"
+                schedule: '9:30 - 11:00'
               },
               1: {
-                title: "Introduccion a Fedora",
-                speaker: "Solach Ccasa",
-                schedule: "11:00 - 12:00"
+                title: 'Introduccion a Fedora',
+                speaker: 'Solach Ccasa',
+                schedule: '11:00 - 12:00'
               },
               2: {
-                title: "IoT usando Microcontroladores Pic de Microchip",
-                speaker: "Javier Hernández",
-                schedule: "12:00 - 13:00"
+                title: 'IoT usando Microcontroladores Pic de Microchip',
+                speaker: 'Javier Hernández',
+                schedule: '12:00 - 13:00'
               },
               3: {
-                title: "Refrigerio",
-                schedule: "13:00 - 13:30",
-                icon: "local_dining",
-                iconColor: "green darken-2"
+                title: 'Refrigerio',
+                schedule: '13:00 - 13:30',
+                icon: 'local_dining',
+                iconColor: 'green darken-2'
               },
               4: {
                 title:
-                  "Aplicaciones del protocolo estandarizado mundialmente para la Domotica KNX en el mundo",
-                speaker: "Brando Boza Ccoyllar",
-                schedule: "13:30 - 14:30"
+                  'Aplicaciones del protocolo estandarizado mundialmente para la Domotica KNX en el mundo',
+                speaker: 'Brando Boza Ccoyllar',
+                schedule: '13:30 - 14:30'
               },
               5: {
-                title: "IOTA y arduino: alternativa Open al Blockchain",
-                speaker: "Christopher Pedro Luis Aldave Ovando",
+                title: 'IOTA y arduino: alternativa Open al Blockchain',
+                speaker: 'Christopher Pedro Luis Aldave Ovando',
                 avatar: cristopherAldave,
-                schedule: "14:30 - 15:30"
+                schedule: '14:30 - 15:30'
               },
               6: {
-                title: "IoT en GNU/Linux",
-                speaker: "Carlos Jara Alva",
+                title: 'IoT en GNU/Linux',
+                speaker: 'Carlos Jara Alva',
                 avatar: carlosJara,
-                schedule: "15:30 - 16:30"
+                schedule: '15:30 - 16:30'
               },
               7: {
-                title: "HERE Technologies - Developer Platform",
-                speaker: "Anthony Machuca Espinoza",
-                schedule: "16:30 - 17:30"
+                title: 'HERE Technologies - Developer Platform',
+                speaker: 'Anthony Machuca Espinoza',
+                schedule: '16:30 - 17:30'
               }
             }
           },
           c: {
-            venue: "Laboratorio 12",
+            venue: 'Laboratorio 12',
             talks: {
               0: {
-                title: "Desarrollando aplicaciones con Google Cloud",
-                speaker: "Milton Yarleque",
-                schedule: "10:00 - 12:00"
+                title: 'Desarrollando aplicaciones con Google Cloud',
+                speaker: 'Milton Yarleque',
+                schedule: '10:00 - 12:00'
               },
               1: {
-                title: "Primeros pasos con InkScape",
-                speaker: "Leyla Marcelo",
-                schedule: "12:00 - 13:00"
+                title: 'Primeros pasos con InkScape',
+                speaker: 'Leyla Marcelo',
+                schedule: '12:00 - 13:00'
               },
               2: {
-                title: "Refrigerio",
-                schedule: "13:00 - 13:30",
-                icon: "local_dining",
-                iconColor: "green darken-2"
+                title: 'Refrigerio',
+                schedule: '13:00 - 13:30',
+                icon: 'local_dining',
+                iconColor: 'green darken-2'
               },
               3: {
                 title:
-                  "Comunicación GSM/GPRS/GPS/Bluetooth (iBeacon) usando Mircrocontroladores",
-                speaker: "Javier Hernández",
-                schedule: "13:30 - 14:00"
+                  'Comunicación GSM/GPRS/GPS/Bluetooth (iBeacon) usando Mircrocontroladores',
+                speaker: 'Javier Hernández',
+                schedule: '13:30 - 14:00'
               },
               4: {
-                title: "Realidad Virtual en la Web",
-                speaker: "Angel Fernando Quiroz Campos",
+                title: 'Realidad Virtual en la Web',
+                speaker: 'Angel Fernando Quiroz Campos',
                 avatar: angelQuiroz,
-                schedule: "14:00 - 16:00"
+                schedule: '14:00 - 16:00'
               },
               5: {
                 title:
-                  "Single Page Applications con Vue.js y Vuetify: La Web de Flisol Lima UPN",
-                speaker: "Martin Vuelta Rojas",
+                  'Single Page Applications con Vue.js y Vuetify: La Web de Flisol Lima UPN',
+                speaker: 'Martin Vuelta Rojas',
                 avatar: martinVuelta,
-                schedule: "16:00 - 17:00"
+                schedule: '16:00 - 17:00'
               },
               6: {
-                title: "Blender para todos",
-                speaker: "Eduardo Diaz",
-                schedule: "17:00 - 18:00"
+                title: 'Blender para todos',
+                speaker: 'Eduardo Diaz',
+                schedule: '17:00 - 18:00'
               }
             }
           }
@@ -862,64 +861,64 @@ export default {
           disableDefaultUI: true,
           styles: [
             {
-              featureType: "all",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#000000" }]
+              featureType: 'all',
+              elementType: 'labels.text.fill',
+              stylers: [{ color: '#000000' }]
             },
             {
-              featureType: "all",
-              elementType: "labels.text.stroke",
-              stylers: [{ visibility: "off" }]
+              featureType: 'all',
+              elementType: 'labels.text.stroke',
+              stylers: [{ visibility: 'off' }]
             },
             {
-              featureType: "all",
-              elementType: "labels.icon",
-              stylers: [{ visibility: "off" }]
+              featureType: 'all',
+              elementType: 'labels.icon',
+              stylers: [{ visibility: 'off' }]
             },
             {
-              featureType: "administrative",
-              elementType: "geometry.fill",
-              stylers: [{ color: "#fafafa" }]
+              featureType: 'administrative',
+              elementType: 'geometry.fill',
+              stylers: [{ color: '#fafafa' }]
             },
             {
-              featureType: "administrative",
-              elementType: "geometry.stroke",
-              stylers: [{ color: "#fafafa" }]
+              featureType: 'administrative',
+              elementType: 'geometry.stroke',
+              stylers: [{ color: '#fafafa' }]
             },
             {
-              featureType: "landscape",
-              elementType: "geometry",
-              stylers: [{ color: "#eeeeee" }]
+              featureType: 'landscape',
+              elementType: 'geometry',
+              stylers: [{ color: '#eeeeee' }]
             },
             {
-              featureType: "poi",
-              elementType: "geometry",
-              stylers: [{ color: "#eeeeee" }]
+              featureType: 'poi',
+              elementType: 'geometry',
+              stylers: [{ color: '#eeeeee' }]
             },
             {
-              featureType: "road",
-              elementType: "all",
+              featureType: 'road',
+              elementType: 'all',
               stylers: [{ saturation: -100 }, { lightness: 45 }]
             },
             {
-              featureType: "road.highway",
-              elementType: "all",
-              stylers: [{ visibility: "simplified" }]
+              featureType: 'road.highway',
+              elementType: 'all',
+              stylers: [{ visibility: 'simplified' }]
             },
             {
-              featureType: "road.arterial",
-              elementType: "labels.icon",
-              stylers: [{ visibility: "off" }]
+              featureType: 'road.arterial',
+              elementType: 'labels.icon',
+              stylers: [{ visibility: 'off' }]
             },
             {
-              featureType: "transit",
-              elementType: "all",
-              stylers: [{ visibility: "off" }]
+              featureType: 'transit',
+              elementType: 'all',
+              stylers: [{ visibility: 'off' }]
             },
             {
-              featureType: "water",
-              elementType: "all",
-              stylers: [{ color: "#4694ec" }, { visibility: "on" }]
+              featureType: 'water',
+              elementType: 'all',
+              stylers: [{ color: '#4694ec' }, { visibility: 'on' }]
             }
           ]
         }
@@ -927,36 +926,36 @@ export default {
     }
   },
   computed: {
-    activeSection() {
+    activeSection () {
       return this.getActiveSection()
     },
-    toolbarHeight() {
-      return document.getElementById("toolbar")
-        ? document.getElementById("toolbar").clientHeight
+    toolbarHeight () {
+      return document.getElementById('toolbar')
+        ? document.getElementById('toolbar').clientHeight
         : 0
     }
   },
   watch: {},
   methods: {
-    getActiveSection() {
+    getActiveSection () {
       return Object.values(this.content.sections).filter(section => {
         return section.isActive
       })[0].title
     },
-    scrollTo(sectionId) {
+    scrollTo (sectionId) {
       let target = this.$refs[sectionId]
 
       target &&
         this.$vuetify.goTo(target, {
-          easing: "easeInOutQuad",
+          easing: 'easeInOutQuad',
           offset: -1.5 * this.toolbarHeight
         })
     },
-    onScroll() {
+    onScroll () {
       let toolbarContainerBox = document
-        .getElementById("toolbar-container")
+        .getElementById('toolbar-container')
         .getBoundingClientRect()
-      let toolbar = document.getElementById("toolbar")
+      let toolbar = document.getElementById('toolbar')
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop
       let toolbarTop = Math.abs(
         document.body.getBoundingClientRect().top - toolbarContainerBox.top
@@ -964,17 +963,17 @@ export default {
 
       if (scrollTop >= toolbarTop) {
         toolbar.style.zIndex = 1
-        toolbar.style.right = toolbarContainerBox.left + "px"
-        toolbar.style.left = toolbarContainerBox.left + "px"
+        toolbar.style.right = toolbarContainerBox.left + 'px'
+        toolbar.style.left = toolbarContainerBox.left + 'px'
         toolbar.style.top = 0
-        toolbar.style.width = "auto"
-        toolbar.style.position = "fixed"
+        toolbar.style.width = 'auto'
+        toolbar.style.position = 'fixed'
       } else {
-        toolbar.style.position = ""
-        toolbar.style.width = ""
-        toolbar.style.right = ""
-        toolbar.style.left = ""
-        toolbar.style.top = ""
+        toolbar.style.position = ''
+        toolbar.style.width = ''
+        toolbar.style.right = ''
+        toolbar.style.left = ''
+        toolbar.style.top = ''
         toolbar.style.zIndex = 0
       }
 
@@ -1003,40 +1002,40 @@ export default {
             return this.content.sections[s].isActive
           })[0]
 
-          if (activeSection != section) {
+          if (activeSection !== section) {
             this.content.sections[activeSection].isActive = false
             this.content.sections[section].isActive = true
           }
         }
       })
     },
-    onResize() {
+    onResize () {
       let toolbarContainerBox = document
-        .getElementById("toolbar-container")
+        .getElementById('toolbar-container')
         .getBoundingClientRect()
-      let toolbar = document.getElementById("toolbar")
+      let toolbar = document.getElementById('toolbar')
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop
       let toolbarTop = Math.abs(
         document.body.getBoundingClientRect().top - toolbarContainerBox.top
       )
 
       if (scrollTop >= toolbarTop) {
-        toolbar.style.right = toolbarContainerBox.left + "px"
-        toolbar.style.left = toolbarContainerBox.left + "px"
+        toolbar.style.right = toolbarContainerBox.left + 'px'
+        toolbar.style.left = toolbarContainerBox.left + 'px'
       } else {
-        toolbar.style.width = ""
-        toolbar.style.right = ""
+        toolbar.style.width = ''
+        toolbar.style.right = ''
       }
     }
   },
-  mounted() {
+  mounted () {
     this.onResize()
     this.onScroll()
-    window.addEventListener("resize", this.onResize)
+    window.addEventListener('resize', this.onResize)
   },
-  beforeDestroy() {
-    if (typeof window !== "undefined") {
-      window.removeEventListener("resize", this.onResize)
+  beforeDestroy () {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.onResize)
     }
   }
 }
