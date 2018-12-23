@@ -145,7 +145,7 @@
           <v-expansion-panel>
             <v-expansion-panel-content>
               <div slot="header">
-                <v-icon class="question-mark" color="cyan lighten-2">fas fa-question-circle</v-icon>
+                <v-icon class="question-mark" color="cyan lighten-2">help_outline</v-icon>
                 ¿Hay requisitos de identificación o edad para ingresar al evento?
               </div>
               <v-card>
@@ -156,7 +156,7 @@
             </v-expansion-panel-content>
             <v-expansion-panel-content>
               <div slot="header">
-                <v-icon class="question-mark" color="cyan lighten-2">fas fa-question-circle</v-icon>
+                <v-icon class="question-mark" color="cyan lighten-2">help_outline</v-icon>
                 ¿Qué puedo llevar al evento?
               </div>
               <v-card>
@@ -167,7 +167,7 @@
             </v-expansion-panel-content>
             <v-expansion-panel-content>
               <div slot="header">
-                <v-icon class="question-mark" color="cyan lighten-2">fas fa-question-circle</v-icon>
+                <v-icon class="question-mark" color="cyan lighten-2">help_outline</v-icon>
                 ¿Debo llevar mi entrada impresa al evento?
               </div>
               <v-card>
@@ -178,7 +178,7 @@
             </v-expansion-panel-content>
             <v-expansion-panel-content>
               <div slot="header">
-                <v-icon class="question-mark" color="cyan lighten-2">fas fa-question-circle</v-icon>
+                <v-icon class="question-mark" color="cyan lighten-2">help_outline</v-icon>
                 ¿Puedo actualizar mi información de inscripción?
               </div>
               <v-card>
@@ -189,7 +189,7 @@
             </v-expansion-panel-content>
             <v-expansion-panel-content>
               <div slot="header">
-                <v-icon class="question-mark" color="cyan lighten-2">fas fa-question-circle</v-icon>
+                <v-icon class="question-mark" color="cyan lighten-2">help_outline</v-icon>
                 ¿Puedo transferir la entrada?
               </div>
               <v-card>
@@ -200,7 +200,7 @@
             </v-expansion-panel-content>
             <v-expansion-panel-content>
               <div slot="header">
-                <v-icon class="question-mark" color="cyan lighten-2">fas fa-question-circle</v-icon>
+                <v-icon class="question-mark" color="cyan lighten-2">help_outline</v-icon>
                 ¿Cómo puedo comunicarme con el organizador si tengo preguntas?
               </div>
               <v-card>
