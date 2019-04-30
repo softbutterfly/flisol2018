@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/flisol2018/precache-manifest.d2de44cbaae3d647ab566ea4ed13b647.js"
+  "/precache-manifest.7cd92ba00e64d1d9381859fe6f241287.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "flisol"});
